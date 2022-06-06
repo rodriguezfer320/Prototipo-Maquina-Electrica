@@ -6,12 +6,15 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARPlacement : MonoBehaviour
 {
-    public GameObject arObjectToSpawn, arObjectToSpawn1;
+    public GameObject arObjectToSpawnMaquina;
+    public GameObject arObjectToSpawnBrazo;
     public GameObject placementIndicator;
-    private GameObject spawnedObject, spawnedObject1;
-    private Pose PlacementPose, PlacementPose1;
+    private GameObject maquina;
+    private GameObject brazo;
+    private Pose PlacementPoseMaquina;
+    private Pose PlacementPoseBrazo;
     private ARRaycastManager aRRaycastManager;
-    private bool placementPoseIsValid = false;
+    private bool PlacementPoseMaquinaIsValid = false;
 
     void Start()
     {
@@ -21,21 +24,21 @@ public class ARPlacement : MonoBehaviour
     // need to update placement indicator, placement pose and spawn 
     void Update()
     {
-        if (spawnedObject == null && placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-        {
-            ARPlaceObject();
-        }
-
         UpdatePlacementPose();
         UpdatePlacementIndicator();
+
+        if (maquina == null && PlacementPoseMaquinaIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            ARPlaceObject();
+        }        
     }
 
     void UpdatePlacementIndicator()
     {
-        if (spawnedObject == null && placementPoseIsValid)
+        if (maquina == null && PlacementPoseMaquinaIsValid)
         {
             placementIndicator.SetActive(true);
-            placementIndicator.transform.SetPositionAndRotation(PlacementPose.position, PlacementPose.rotation);
+            placementIndicator.transform.SetPositionAndRotation(PlacementPoseMaquina.position, PlacementPoseMaquina.rotation);
         }
         else
         {
@@ -47,23 +50,23 @@ public class ARPlacement : MonoBehaviour
     {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         var hits = new List<ARRaycastHit>();
-        aRRaycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
+        aRRaycastManager.Raycast(screenCenter, hits, TrackableType.All);
 
-        placementPoseIsValid = hits.Count > 0;
-        if (placementPoseIsValid)
+        PlacementPoseMaquinaIsValid = hits.Count > 0;
+        if (PlacementPoseMaquinaIsValid)
         {
-            PlacementPose = hits[0].pose;
-            PlacementPose1 = hits[0].pose;
+            PlacementPoseMaquina = hits[0].pose;
+            PlacementPoseBrazo = hits[0].pose;
         }
     }
 
     void ARPlaceObject()
     {
-        PlacementPose.rotation[1] = 180;
-        spawnedObject = Instantiate(arObjectToSpawn, PlacementPose.position, PlacementPose.rotation);
+        PlacementPoseMaquina.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        maquina = Instantiate(arObjectToSpawnMaquina, PlacementPoseMaquina.position, PlacementPoseMaquina.rotation);
         
-        PlacementPose1.position[0] = 0.0679f;
-        PlacementPose1.rotation[0] = 90;
-        spawnedObject1 = Instantiate(arObjectToSpawn1, PlacementPose1.position, PlacementPose1.rotation);
+        PlacementPoseBrazo.position[0] += 0.08f;
+        PlacementPoseBrazo.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
+        brazo = Instantiate(arObjectToSpawnBrazo, PlacementPoseBrazo.position, PlacementPoseBrazo.rotation);
     }
 }
