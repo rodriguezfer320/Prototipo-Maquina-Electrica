@@ -20,7 +20,6 @@ public class SliderText : MonoBehaviour
  
     void UpdateText(float val)
     {
-        //textComp.text = slider.value.ToString();
         textComp.text = val.ToString();
     }
 }
