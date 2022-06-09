@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using UnityEngine.UI;
 
 public class ARPlacement : MonoBehaviour
 {
@@ -69,4 +70,5 @@ public class ARPlacement : MonoBehaviour
         PlacementPoseBrazo.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         brazo = Instantiate(arObjectToSpawnBrazo, PlacementPoseBrazo.position, PlacementPoseBrazo.rotation);
     }
+    
 }
