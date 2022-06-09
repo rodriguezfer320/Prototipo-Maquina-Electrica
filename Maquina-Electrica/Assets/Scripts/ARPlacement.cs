@@ -14,11 +14,14 @@ public class ARPlacement : MonoBehaviour
     private GameObject brazo;
     private Pose PlacementPoseMaquina;
     private Pose PlacementPoseBrazo;
+    private ARSessionOrigin sessionOrigin;
     private ARRaycastManager aRRaycastManager;
+    private List<ARRaycastHit> hits;
     private bool PlacementPoseMaquinaIsValid = false;
 
     void Start()
     {
+        sessionOrigin = GetComponent<ARSessionOrigin>();
         aRRaycastManager = FindObjectOfType<ARRaycastManager>();
     }
 
@@ -51,7 +54,7 @@ public class ARPlacement : MonoBehaviour
     {
         var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         var hits = new List<ARRaycastHit>();
-        aRRaycastManager.Raycast(screenCenter, hits, TrackableType.All);
+        aRRaycastManager.Raycast(screenCenter, hits, TrackableType.PlaneWithinPolygon);
 
         PlacementPoseMaquinaIsValid = hits.Count > 0;
         if (PlacementPoseMaquinaIsValid)
