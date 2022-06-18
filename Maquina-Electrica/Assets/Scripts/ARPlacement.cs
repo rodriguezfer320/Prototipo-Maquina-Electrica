@@ -18,11 +18,13 @@ public class ARPlacement : MonoBehaviour
     private ARRaycastManager aRRaycastManager;
     private List<ARRaycastHit> hits;
     private bool PlacementPoseMaquinaIsValid = false;
+    private Image handle;
 
     void Start()
     {
         sessionOrigin = GetComponent<ARSessionOrigin>();
         aRRaycastManager = FindObjectOfType<ARRaycastManager>();
+        handle = GameObject.Find("handle").GetComponent<Image>();
     }
 
     // need to update placement indicator, placement pose and spawn 
@@ -72,6 +74,9 @@ public class ARPlacement : MonoBehaviour
         PlacementPoseBrazo.position[0] += 0.08f;
         PlacementPoseBrazo.rotation = Quaternion.Euler(new Vector3(90, 0, 0));
         brazo = Instantiate(arObjectToSpawnBrazo, PlacementPoseBrazo.position, PlacementPoseBrazo.rotation);
+
+        RotateManager.GetInstance().SetHandle(handle);
+        RotateManager.GetInstance().SetBobina(maquina.transform.GetChild(2).gameObject);
     }
     
 }
