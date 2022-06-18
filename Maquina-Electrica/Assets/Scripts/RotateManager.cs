@@ -10,7 +10,11 @@ public class RotateManager : MonoBehaviour
     private static RotateManager instance;
     private GameObject bobina;
     private Renderer _renderer;
-    private Text textAngle;
+    private float r;
+    private float g;
+    private float b;
+    private float val;
+    private float val_r;
 
     public static RotateManager GetInstance(){
         return instance;
@@ -19,11 +23,6 @@ public class RotateManager : MonoBehaviour
     void Awake()
     {
         instance = this;  
-        textAngle = GetComponent<Text>();
-    }
-
-    public void SetTextAngle(Text _textAngle){
-        textAngle = _textAngle;
     }
 
     public void SetBobina(GameObject _bobina){
@@ -42,7 +41,6 @@ public class RotateManager : MonoBehaviour
         angle = (angle >= 0) ? angle : (360 + angle);
 
         if(angle <= 180 || angle >= 360){
-            textAngle.text = angle.ToString();
             ChangeColor(angle);
             angle = ((angle >= 180) ? (angle - 360) : angle);
         }   
@@ -52,21 +50,26 @@ public class RotateManager : MonoBehaviour
     private void ChangeColor(float angle){
          _renderer = bobina.GetComponent<Renderer>();
 
+        r = 0.7529412f;
+        g = 0.140016f;
+        b = 0.1304288f;
+        val = 0.04f;
+        val_r = 0.08f;
+
         if(angle <= 180f && angle >= 150f){
             handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); 
-            _renderer.material.color = Color.black;
+            _renderer.material.color = new Color(r, g, b, 1f);
         }else if(angle < 150f && angle >= 120f){
             handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -60));
-            _renderer.material.color = Color.yellow;
+            _renderer.material.color = new Color(r+(val_r), g-(val*2), b-(val*2), 1f);
         }else if(angle < 120f && angle >= 60f){
             handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -120));
-            _renderer.material.color = Color.blue;
+            _renderer.material.color = new Color(r+(val_r*2), g-(val*3), b-(val*3), 1f);
         }else if(angle < 60f && angle >= 0f){
              handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -180));
-            _renderer.material.color = Color.red;
+            _renderer.material.color = new Color(1, 0, 0, 1f);
         }else{
-            handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); 
-            _renderer.material.color = Color.green;
+            
         }      
         
     }

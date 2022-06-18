@@ -19,14 +19,12 @@ public class ARPlacement : MonoBehaviour
     private List<ARRaycastHit> hits;
     private bool PlacementPoseMaquinaIsValid = false;
     private Image handle;
-    private Text textAngle;
 
     void Start()
     {
         sessionOrigin = GetComponent<ARSessionOrigin>();
         aRRaycastManager = FindObjectOfType<ARRaycastManager>();
         handle = GameObject.Find("handle").GetComponent<Image>();
-        textAngle = GameObject.Find("textAngle").GetComponent<Text>();
     }
 
     // need to update placement indicator, placement pose and spawn 
@@ -79,7 +77,6 @@ public class ARPlacement : MonoBehaviour
 
         RotateManager.GetInstance().SetHandle(handle);
         RotateManager.GetInstance().SetBobina(maquina.transform.GetChild(2).gameObject);
-        RotateManager.GetInstance().SetTextAngle(textAngle);
     }
     
 }
