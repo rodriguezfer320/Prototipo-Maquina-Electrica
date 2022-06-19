@@ -10,6 +10,8 @@ public class ARPlacement : MonoBehaviour
     public GameObject arObjectToSpawnMaquina;
     public GameObject arObjectToSpawnBrazo;
     public GameObject placementIndicator;
+    public Camera aRCamera;
+
     private GameObject maquina;
     private GameObject brazo;
     private Pose PlacementPoseMaquina;
@@ -43,6 +45,9 @@ public class ARPlacement : MonoBehaviour
     {
         if (maquina == null && PlacementPoseMaquinaIsValid)
         {
+            var cameraForward = aRCamera.transform.forward;
+            var cameraBearing = new Vector3(cameraForward.x, 8, cameraForward.z).normalized;
+            PlacementPoseMaquina.rotation=Quaternion.LookRotation(cameraBearing);
             placementIndicator.SetActive(true);
             placementIndicator.transform.SetPositionAndRotation(PlacementPoseMaquina.position, PlacementPoseMaquina.rotation);
         }
