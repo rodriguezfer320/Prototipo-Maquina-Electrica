@@ -10,7 +10,6 @@ public class ARPlacement : MonoBehaviour
     public GameObject arObjectToSpawnMachine;
     public GameObject placementIndicator;
     public Camera aRCamera;
-
     private GameObject machine;
     private GameObject topCoil;
     private GameObject arm;
