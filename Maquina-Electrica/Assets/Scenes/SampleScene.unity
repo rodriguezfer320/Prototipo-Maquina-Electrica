@@ -1887,6 +1887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arObjectToSpawnMachine: {fileID: 8140307255853373219, guid: 976a790ef9ed2be41bcfeb5503bea456, type: 3}
   placementIndicator: {fileID: 499594436}
+  canvas: {fileID: 1293950089}
   aRCamera: {fileID: 498732850}
 --- !u!4 &2058348231
 Transform:

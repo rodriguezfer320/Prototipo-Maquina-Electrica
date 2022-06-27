@@ -9,6 +9,7 @@ public class ARPlacement : MonoBehaviour
 {
     public GameObject arObjectToSpawnMachine;
     public GameObject placementIndicator;
+    public GameObject canvas;
     public Camera aRCamera;
     private GameObject machine;
     private GameObject topCoil;
@@ -23,6 +24,8 @@ public class ARPlacement : MonoBehaviour
     {
         sessionOrigin = GetComponent<ARSessionOrigin>();
         aRRaycastManager = FindObjectOfType<ARRaycastManager>();
+
+        canvas.gameObject.SetActive(false);
     }
 
     // need to update placement indicator, placement pose and spawn 
@@ -34,6 +37,7 @@ public class ARPlacement : MonoBehaviour
         if (machine == null && placementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             ARPlaceObject();
+            canvas.gameObject.SetActive(true);
         }        
     }
 
