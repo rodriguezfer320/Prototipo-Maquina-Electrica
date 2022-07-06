@@ -22,7 +22,7 @@ public class ARAngleSlider : MonoBehaviour
         return instance;
     }
 
-    public void SetArm(GameObject _arm)
+    public void SetArmRotation(GameObject _arm)
     {
         arm = _arm;
     }
