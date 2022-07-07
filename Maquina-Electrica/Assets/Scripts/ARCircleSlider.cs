@@ -36,7 +36,7 @@ public class ARCircleSlider : MonoBehaviour
 
     public static ARCircleSlider GetInstance()
     {
-        return instance;
+        return instance == null? instance = new ARCircleSlider() : instance;
     }
 
     public void SetSheetRenderer(GameObject sheet)

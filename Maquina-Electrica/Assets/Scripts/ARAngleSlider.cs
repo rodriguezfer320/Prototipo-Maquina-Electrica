@@ -19,7 +19,7 @@ public class ARAngleSlider : MonoBehaviour
 
     public static ARAngleSlider GetInstance()
     {   
-        return instance;
+        return instance == null? instance = new ARAngleSlider() : instance;
     }
 
     public void SetArmRotation(GameObject _arm)

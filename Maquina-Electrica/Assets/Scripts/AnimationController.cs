@@ -23,7 +23,7 @@ public class AnimationController : MonoBehaviour
 
     public static AnimationController GetInstance()
     {
-        return instance;
+        return instance == null? instance = new AnimationController() : instance;
     }
 
     public void SetMachineObject(GameObject _machine)
@@ -76,8 +76,8 @@ public class AnimationController : MonoBehaviour
                     .GetChild(newAnimation)
                     .gameObject
                     .SetActive(true);
-                oldAnimation = newAnimation;
             }
+            oldAnimation = newAnimation;
         }
     }
 }
