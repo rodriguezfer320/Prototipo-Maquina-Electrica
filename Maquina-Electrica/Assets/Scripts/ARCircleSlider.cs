@@ -70,47 +70,35 @@ public class ARCircleSlider : MonoBehaviour
         {
             ChangeColorAndRotation (angle);
             ChangeAlphaMachine();
+            AnimationController.GetInstance().RunAnimation();
         }
     }
 
     private void ChangeColorAndRotation(float angle)
     {
         alpha = 0.25f;
-        if (angle <= 180f && angle >= 150f)
-        {
+        if(angle <= 180f && angle >= 150f){
             alpha = 1f;
-            handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0)); 
             topCoilRenderer.material.color = new Color(r, g, b, alpha);
             fill.fillAmount = 0f;
-        }
-        else if (angle < 150f && angle >= 120f)
-        {
-            Vibrator.Vibrate();
-            Vibrator.Vibrate(1000);
-            handle.transform.rotation =
-                Quaternion.Euler(new Vector3(0, 0, -60));
-            topCoilRenderer.material.color =
-                new Color(r + 0.08f, g - (0.04f * 2f), b - (0.04f * 2f), alpha);
+            AnimationController.GetInstance().SetVolt(0);
+        }else if(angle < 150f && angle >= 120f){
+            handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -60));
+            topCoilRenderer.material.color = new Color(r + 0.08f, g - (0.04f * 2f), b - (0.04f * 2f), alpha);
             fill.fillAmount = 0.444f;
-        }
-        else if (angle < 120f && angle >= 60f)
-        {
-            handle.transform.rotation =
-                Quaternion.Euler(new Vector3(0, 0, -120));
-            topCoilRenderer.material.color =
-                new Color(r + (0.08f * 2f),
-                    g - (0.04f * 3f),
-                    b - (0.04f * 3f),
-                    alpha);
+            AnimationController.GetInstance().SetVolt(5);
+        }else if(angle < 120f && angle >= 60f){
+            handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -120));
+            topCoilRenderer.material.color = new Color(r + (0.08f * 2f), g - (0.04f * 3f), b - (0.04f * 3f), alpha);
             fill.fillAmount = 0.62f;
-        }
-        else if (angle < 60f && angle >= 0f)
-        {
-            handle.transform.rotation =
-                Quaternion.Euler(new Vector3(0, 0, -180));
+            AnimationController.GetInstance().SetVolt(15);
+        }else if(angle < 60f && angle >= 0f){
+            handle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, -180));
             topCoilRenderer.material.color = new Color(1f, 0f, 0f, alpha);
-            fill.fillAmount = alpha;
-        }
+            fill.fillAmount = 1f;
+            AnimationController.GetInstance().SetVolt(30);
+        }      
     }
 
     private void ChangeAlphaMachine()

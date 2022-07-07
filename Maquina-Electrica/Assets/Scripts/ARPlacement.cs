@@ -111,14 +111,15 @@ public class ARPlacement : MonoBehaviour
         topCoil = machine.transform.GetChild(0).GetChild(2).gameObject;
         side = machine.transform.GetChild(0).GetChild(3).gameObject;
         arm = machine.transform.GetChild(1).GetChild(0).gameObject;
-
         armRotation = machine.transform.GetChild(1).gameObject;
 
         ARCircleSlider.GetInstance().SetSheetRenderer(sheet);
         ARCircleSlider.GetInstance().SetTopCoilRenderer(topCoil);
         ARCircleSlider.GetInstance().SetSideRenderer(side);
         ARCircleSlider.GetInstance().SetArmRenderer(arm);
-
+        
         ARAngleSlider.GetInstance().SetArmRotation(armRotation);
+
+        AnimationController.GetInstance().SetMachineObject(machine);
     }
 }

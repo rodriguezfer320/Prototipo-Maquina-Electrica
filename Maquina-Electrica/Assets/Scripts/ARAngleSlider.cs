@@ -32,6 +32,7 @@ public class ARAngleSlider : MonoBehaviour
         float val = GetDegrees(slider.value);
         UpdateText(val);
         UpdateArmRotation(val);
+        AnimationController.GetInstance().RunAnimation();
     }
     
     private float GetDegrees(float val){
@@ -39,34 +40,42 @@ public class ARAngleSlider : MonoBehaviour
             fillSliderNums.fillAmount = 0.207f;
             slider.value = 10f;
             val = 2f;
+            AnimationController.GetInstance().SetAngle(2);
         }else if(val > 10f && val <= 20f){
             fillSliderNums.fillAmount = 0.34f;
             slider.value = 20f;
             val = 4f;
+            AnimationController.GetInstance().SetAngle(4);
         }else if(val > 20f && val <= 30f){
             fillSliderNums.fillAmount = 0.471f;
             slider.value = 30f;
             val = 8f;
+            AnimationController.GetInstance().SetAngle(8);
         }else if(val > 30f && val <= 40f){
             fillSliderNums.fillAmount = 0.604f;
             slider.value = 40f;
             val = 15f;
+            AnimationController.GetInstance().SetAngle(15);
         }else if(val > 40f && val <= 50f){
             fillSliderNums.fillAmount = 0.736f;
             slider.value = 50f;
             val = 30f;
+            AnimationController.GetInstance().SetAngle(30);
         }else if(val > 50f && val <= 60f){
             fillSliderNums.fillAmount = 0.868f;
             slider.value = 60f;
             val = 45f;
+            AnimationController.GetInstance().SetAngle(45);
         }else if(val > 60f && val <= 70f){
             fillSliderNums.fillAmount = 1f;
             slider.value = 70f;
             val = 90f;
+            AnimationController.GetInstance().SetAngle(90);
         }else {
             fillSliderNums.fillAmount = 0f;
             slider.value = 0f;
             val = 0f;
+            AnimationController.GetInstance().SetAngle(0);
         }
         
         return val;
