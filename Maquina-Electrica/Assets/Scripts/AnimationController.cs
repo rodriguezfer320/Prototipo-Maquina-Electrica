@@ -23,7 +23,9 @@ public class AnimationController : MonoBehaviour
 
     public static AnimationController GetInstance()
     {
-        return instance == null? instance = new AnimationController() : instance;
+        return instance == null
+            ? instance = new AnimationController()
+            : instance;
     }
 
     public void SetMachineObject(GameObject _machine)
@@ -45,13 +47,72 @@ public class AnimationController : MonoBehaviour
     {
         if (volt == 5)
         {
-            if (angle == 8)
+            if (angle == 0)
             {
                 newAnimation = 2;
             }
-            else if (angle == 15)
+            else if (angle == 2)
             {
                 newAnimation = 3;
+            }
+            else if (angle == 4)
+            {
+                newAnimation = 4;
+            }
+            else if (angle == 8)
+            {
+                newAnimation = 5;
+            }
+            else if (angle == 15)
+            {
+                newAnimation = 6;
+            }
+            else if (angle == 30)
+            {
+                newAnimation = 7;
+            }
+            else if (angle == 45)
+            {
+                newAnimation = 8;
+            }
+            else if (angle == 90)
+            {
+                newAnimation = 9;
+            }
+        }
+        else if (volt == 15)
+        {
+            if (angle == 0)
+            {
+                newAnimation = 10;
+            }
+            else if (angle == 2)
+            {
+                newAnimation = 11;
+            }
+            else if (angle == 4)
+            {
+                newAnimation = 12;
+            }
+            else if (angle == 8)
+            {
+                newAnimation = 13;
+            }
+            else if (angle == 15)
+            {
+                newAnimation = 14;
+            }
+            else if (angle == 30)
+            {
+                newAnimation = 15;
+            }
+            else if (angle == 45)
+            {
+                newAnimation = 16;
+            }
+            else if (angle == 90)
+            {
+                newAnimation = 17;
             }
         }
         else
