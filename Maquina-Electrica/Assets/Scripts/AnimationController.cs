@@ -115,6 +115,41 @@ public class AnimationController : MonoBehaviour
                 newAnimation = 17;
             }
         }
+        else if (volt == 30)
+        {
+            if (angle == 0)
+            {
+                newAnimation = 18;
+            }
+            else if (angle == 2)
+            {
+                newAnimation = 19;
+            }
+            else if (angle == 4)
+            {
+                newAnimation = 20;
+            }
+            else if (angle == 8)
+            {
+                newAnimation = 21;
+            }
+            else if (angle == 15)
+            {
+                newAnimation = 22;
+            }
+            else if (angle == 30)
+            {
+                newAnimation = 23;
+            }
+            else if (angle == 45)
+            {
+                newAnimation = 24;
+            }
+            else if (angle == 90)
+            {
+                newAnimation = 25;
+            }
+        }
         else
         {
             newAnimation = -1;
