@@ -41,8 +41,7 @@ public class ARPlacement : MonoBehaviour
     {
         sessionOrigin = GetComponent<ARSessionOrigin>();
         aRRaycastManager = FindObjectOfType<ARRaycastManager>();
-
-        canvas.gameObject.SetActive(false);
+        SetActivateControls(false);
     }
 
     // need to update placement indicator, placement pose and spawn
@@ -60,7 +59,11 @@ public class ARPlacement : MonoBehaviour
         )
         {
             ARPlaceObject();
-            canvas.gameObject.SetActive(true);
+            SetActivateControls(true);
+            GetMachineChilds();
+            SetARCircleSliderInstances();
+            SetAngleSliderInstance();
+            SetAnimationControllerInstance();
         }
     }
 
@@ -106,20 +109,42 @@ public class ARPlacement : MonoBehaviour
             Instantiate(arObjectToSpawnMachine,
             placementPose.position,
             placementPose.rotation);
+    }
 
+    // Function that activates the controls (Circle Slider, Angle Slider) of the machine
+    void SetActivateControls(bool status)
+    {
+        canvas.transform.GetChild(0).gameObject.SetActive(status);
+        canvas.transform.GetChild(1).gameObject.SetActive(status);
+    }
+
+    // Function that get the game objects child's machines instances
+    void GetMachineChilds()
+    {
         sheet = machine.transform.GetChild(0).GetChild(0).gameObject;
         topCoil = machine.transform.GetChild(0).GetChild(2).gameObject;
         side = machine.transform.GetChild(0).GetChild(3).gameObject;
         arm = machine.transform.GetChild(1).GetChild(0).gameObject;
         armRotation = machine.transform.GetChild(1).gameObject;
-
+    }
+    
+    // Function that set the game objects child's machines instances of the ARCircleSlider class
+    void SetARCircleSliderInstances()
+    {
         ARCircleSlider.GetInstance().SetSheetRenderer(sheet);
         ARCircleSlider.GetInstance().SetTopCoilRenderer(topCoil);
         ARCircleSlider.GetInstance().SetSideRenderer(side);
         ARCircleSlider.GetInstance().SetArmRenderer(arm);
-        
+    }
+    // Function that set the game object armRotation instance of the ArAngleSlider class
+    void SetAngleSliderInstance()
+    {
         ARAngleSlider.GetInstance().SetArmRotation(armRotation);
+    }
 
+    // Function that set the game object machine of the AnimationController class
+    void SetAnimationControllerInstance()
+    {
         AnimationController.GetInstance().SetMachineObject(machine);
     }
 }

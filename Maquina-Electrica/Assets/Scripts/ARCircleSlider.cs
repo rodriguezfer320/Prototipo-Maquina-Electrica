@@ -34,32 +34,38 @@ public class ARCircleSlider : MonoBehaviour
         fill = GameObject.Find("fill").GetComponent<Image>();
     }
 
+    // Function that get the ARCircleSlider's class instance
     public static ARCircleSlider GetInstance()
     {
         return instance == null? instance = new ARCircleSlider() : instance;
     }
 
+    // Function that set the sheetRenderer's machine renderer
     public void SetSheetRenderer(GameObject sheet)
     {
         sheetRenderer = sheet.GetComponent<Renderer>();
     }
 
+    // Function that set the topCoil's machine renderer
     public void SetTopCoilRenderer(GameObject topCoil)
     {
         topCoilRenderer = topCoil.GetComponent<Renderer>();
     }
 
+    // Function that set the side's machine renderer
     public void SetSideRenderer(GameObject side)
     {
         sideRenderer = side.GetComponent<Renderer>();
     }
 
+    // Function that set the arm's machine renderer
     public void SetArmRenderer(GameObject arm)
     {
         armRenderer = arm.GetComponent<Renderer>();
     }
 
-    public void OnHandleDrag()
+    // Function that listen the Handel's drag event set the armRotation's machine game object
+    public void OnHandelDrag()
     {
         Vector3 fingerPos = Input.GetTouch(0).position;
         Vector2 dir = fingerPos - handle.transform.position;
@@ -73,7 +79,7 @@ public class ARCircleSlider : MonoBehaviour
             AnimationController.GetInstance().RunAnimation();
         }
     }
-
+    
     private void ChangeColorAndRotation(float angle)
     {
         alpha = 0.25f;

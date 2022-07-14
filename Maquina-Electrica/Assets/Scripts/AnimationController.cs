@@ -21,6 +21,7 @@ public class AnimationController : MonoBehaviour
         instance = this;
     }
 
+    // Function that get the AnimationController's class instance
     public static AnimationController GetInstance()
     {
         return instance == null
