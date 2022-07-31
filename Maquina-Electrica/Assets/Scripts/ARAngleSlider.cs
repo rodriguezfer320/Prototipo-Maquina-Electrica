@@ -29,6 +29,7 @@ public class ARAngleSlider : MonoBehaviour
         armRotation = _armRotation;
     }
 
+    // Function that listen the slider event
     public void OnSliderValueChanged(){
         //0-2-4-8-15-30-45-90
         float val = GetDegrees(slider.value);
@@ -37,6 +38,7 @@ public class ARAngleSlider : MonoBehaviour
         AnimationController.GetInstance().RunAnimation();
     }
     
+    // Function that get de degrees of each slider value
     private float GetDegrees(float val){
         if(val > 0f && val <= 10f){
             fillSliderNums.fillAmount = 0.207f;
@@ -83,11 +85,13 @@ public class ARAngleSlider : MonoBehaviour
         return val;
     }
 
+    // Function that update the text of the slider
     private void UpdateText(float val)
     {
         textComp.text = val.ToString();
-    }
+    }  
 
+    // Function that update the arm of the machine
     private void UpdatearmRotationRotation(float val)
     {   
 		armRotation.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, val - 180));

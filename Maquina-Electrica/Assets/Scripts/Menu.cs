@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Menu : MonoBehaviour
 {   
-
+    // Function that listen the exit event
     public void Exit()
     {
         Application.Quit();

@@ -29,21 +29,25 @@ public class AnimationController : MonoBehaviour
             : instance;
     }
 
+    // Function that ser de machine game object
     public void SetMachineObject(GameObject _machine)
     {
         machine = _machine;
     }
 
+    // Function that set the volt's value
     public void SetVolt(int _volt)
     {
         volt = _volt;
     }
 
+    // Function that set the angle's value
     public void SetAngle(int _angle)
     {
         angle = _angle;
     }
 
+    // Function that run the animation depend of the volt's value and agle's value
     public void RunAnimation()
     {
         if (volt == 5)

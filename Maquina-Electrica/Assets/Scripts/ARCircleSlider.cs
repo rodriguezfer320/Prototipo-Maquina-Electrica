@@ -79,7 +79,8 @@ public class ARCircleSlider : MonoBehaviour
             AnimationController.GetInstance().RunAnimation();
         }
     }
-    
+
+    // Function that change the color and rotation of the knob button
     private void ChangeColorAndRotation(float angle)
     {
         alpha = 0.25f;
@@ -107,6 +108,7 @@ public class ARCircleSlider : MonoBehaviour
         }      
     }
 
+    // Function that change the trasparency of the machine.
     private void ChangeAlphaMachine()
     {
         sheetRenderer.material.color = GetRendererMaterialColor(sheetRenderer);
@@ -116,6 +118,7 @@ public class ARCircleSlider : MonoBehaviour
         armRenderer.material.color = GetRendererMaterialColor(armRenderer);
     }
 
+    // Function that get the material of each game object
     private Color GetRendererMaterialColor(Renderer renderer)
     {   
         Color color = renderer.material.color;
