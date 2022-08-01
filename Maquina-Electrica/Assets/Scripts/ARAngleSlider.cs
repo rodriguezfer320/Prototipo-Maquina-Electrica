@@ -6,7 +6,7 @@ public class ARAngleSlider : MonoBehaviour
 	private static ARAngleSlider instance;
     private Slider slider;
     private Text textComp;
-    private GameObject arm;
+    private GameObject armRotation;
     private Image fillSliderNums;
 
     private void Awake()
@@ -17,24 +17,28 @@ public class ARAngleSlider : MonoBehaviour
         fillSliderNums = GameObject.Find("fillSliderNums").GetComponent<Image>();
     }
 
+    // Function that get the ARAngleSlider's class instance
     public static ARAngleSlider GetInstance()
     {   
         return instance == null? instance = new ARAngleSlider() : instance;
     }
 
-    public void SetArmRotation(GameObject _arm)
+    // Function that set the armRotation's machine game object
+    public void SetArmRotation(GameObject _armRotation)
     {
-        arm = _arm;
+        armRotation = _armRotation;
     }
 
+    // Function that listen the slider event
     public void OnSliderValueChanged(){
         //0-2-4-8-15-30-45-90
         float val = GetDegrees(slider.value);
         UpdateText(val);
-        UpdateArmRotation(val);
+        UpdatearmRotationRotation(val);
         AnimationController.GetInstance().RunAnimation();
     }
     
+    // Function that get de degrees of each slider value
     private float GetDegrees(float val){
         if(val > 0f && val <= 10f){
             fillSliderNums.fillAmount = 0.207f;
@@ -81,14 +85,16 @@ public class ARAngleSlider : MonoBehaviour
         return val;
     }
 
+    // Function that update the text of the slider
     private void UpdateText(float val)
     {
         textComp.text = val.ToString();
-    }
+    }  
 
-    private void UpdateArmRotation(float val)
+    // Function that update the arm of the machine
+    private void UpdatearmRotationRotation(float val)
     {   
-		arm.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, val - 180));
+		armRotation.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, val - 180));
 	}
     
 }
